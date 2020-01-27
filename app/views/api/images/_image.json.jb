@@ -1,0 +1,4 @@
+{
+  id: image.id,
+  url: image.url
+}

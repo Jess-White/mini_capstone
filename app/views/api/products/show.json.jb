@@ -1,0 +1,2 @@
+render partial: "product.json.jb", locals: {product: @product}
+#@product refers to a variable holding a single instance of a product object

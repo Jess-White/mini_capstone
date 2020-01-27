@@ -1,0 +1,6 @@
+is_discounted: product.is_discounted?,
+supplier: ( render partial: ""),
+formatted: {
+            price: number_to_currency(product.price), 
+            tax: number_to_currenct(product.)
+}

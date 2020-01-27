@@ -1,0 +1,6 @@
+remove image_url from products
+create image model
+- url is an attribute
+- product_id is an attribute (foreign key)
+step 2 - move urls
+step 3 - remove image_url from products
