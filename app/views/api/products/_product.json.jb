@@ -7,7 +7,7 @@
   in_stock: product.in_stock,
   tax: product.tax,
   total: product.total,
-  supplier: render partial: "api/suppliers/supplier.json.jb", locals: {supplier: product.supplier } ),
+  supplier: (render partial: "api/suppliers/supplier.json.jb", locals: {supplier: product.supplier } ),
   images: product.images.map { |image| render partial: "api/images/image.json.jb", locals: {image: image}},
   formatted: {
               price: number_to_currency(product.price),

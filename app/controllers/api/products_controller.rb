@@ -48,8 +48,8 @@ class Api::ProductsController < ApplicationController
   end 
 
   def show 
-    @product = Product.find(params[:id])
-    render 'show.json.jb'
+      @product = Product.find(params[:id])
+      render 'show.json.jb'
   end  
 
   def update 

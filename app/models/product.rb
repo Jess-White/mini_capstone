@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :supplier
   has_many :images
+  has_many :orders
 
   # def supplier
   #   Supplier.find_by(id: self.supplier_id)
@@ -9,13 +10,14 @@ class Product < ApplicationRecord
 
 
   validates :name, presence: true
-  validates :price, presence: true
   validates :name, length: { maximum: 255 }
   validates :description, length: {minimum: 10}
   validates :description, length: {maximum: 500}
-  validates :price, numericality: true
-  validates :price, numericality: {greater_than: 0}
-  validates :price, numericality: {less_than: 100000}
+  validates :price, presence: true
+  validates :price, numericality: {greater_than: 0, less_than: 100_000}
+  # validates :price, numericality: true
+  # validates :price, numericality: {greater_than: 0}
+  # validates :price, numericality: {less_than: 100000}
   # validates :price, :format => { :with => /^\d{1,6}(\.\d{0,2})?$/ }
 
 
@@ -27,7 +29,8 @@ class Product < ApplicationRecord
 # end
 
   def is_discounted?
-    self.price < 3 ? true : false
+    # self.price < 3 ? true : false
+    price < 3
   end
 
   def tax
