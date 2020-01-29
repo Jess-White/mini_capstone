@@ -29,7 +29,6 @@ class Product < ApplicationRecord
 # end
 
   def is_discounted?
-    # self.price < 3 ? true : false
     price < 3
   end
 
