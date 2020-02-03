@@ -3,6 +3,11 @@ class Product < ApplicationRecord
   has_many :images
   has_many :orders
 
+  has_many :carted_products
+
+  has_many :product_categories
+  has_many :categories, through: :product_categories
+  #has_many is a method, takes in a symbol, then through: is a key, product_categories is a symbol of product_categories
   # def supplier
   #   Supplier.find_by(id: self.supplier_id)
   #   #returns a supplier object - the one associated with this product.

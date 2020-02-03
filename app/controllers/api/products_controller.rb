@@ -1,4 +1,5 @@
 class Api::ProductsController < ApplicationController
+  before_action :authenticate_admin, only: [:create, :update, :destroy]
 
   def index 
     @products = Product.all
@@ -7,9 +8,15 @@ class Api::ProductsController < ApplicationController
     discount_option = params[:discount]
     sort_attribute = params[:sort]
     sort_order = params[:sort_order]
+    category_choice = params[:category]
+
+    if category_choice
+      category = Category.find_by(name: category_choice)
+      @products = category.products
+    end 
 
     if search_term
-      @products = products.where("name iLIKE ?", "%#{ search_term }%")
+      @products = Product.where("name iLIKE ?", "%#{ search_term }%")
     end 
 
     if discount_option == "true"
@@ -43,7 +50,7 @@ class Api::ProductsController < ApplicationController
     if @product.save 
       render 'show.json.jb'
     else
-      render json: {error: @product.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
     end 
   end 
 
@@ -63,14 +70,14 @@ class Api::ProductsController < ApplicationController
     if @product.save
       render 'show.json.jb'
     else
-      render json: {error: @product.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors: @product.errors.full_messages}, status: :unprocessable_entity
     end 
   end 
 
   def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
-    @product.save
-    render json: {message: "Product #{@product.name} successfully destroyed."}
+    product = Product.find(params[:id])
+    product.destroy
+    product.save
+    render json: {message: "Product #{product.name} successfully destroyed."}
   end 
 end
