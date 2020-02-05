@@ -1,1 +1,12 @@
 render partial: "carted_product.json.jb", locals: {carted_product: @carted_product}
+
+#basic show format:
+
+# {
+#   id: @carted_product.id,
+#   product_id: @carted_product.product_id,
+#   user_id: @carted_product.user_id,
+#   quantity: @carted_product.quantity,
+#   status: @carted_product.status,
+#   order_id: @carted_product.order_id
+# }
